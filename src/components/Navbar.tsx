@@ -20,7 +20,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[blue] text-white shadow-md py-13 px-4 fixed top-0 left-0 w-full h-[50px] flex items-center z-50">
+    <nav className="bg-[red] text-white shadow-md py-3 px-4 fixed top-0 left-0 w-full h-[50px] flex items-center z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-1">
           <Image

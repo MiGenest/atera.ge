@@ -1,5 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
+// import document from "next/document"; // Removed as it's not needed
 
 // ✅ Scroll ფუნქცია შესაბამის სექციაზე გადასასვლელად
 const scrollToSection = (id: string, setActive: Function) => {
@@ -10,31 +12,32 @@ const scrollToSection = (id: string, setActive: Function) => {
   }
 };
 
+// ✅ სერვისების სია
 const services = [
   {
     title: "სისტემური ინტეგრაცია",
     subcategories: [
-      { title: "IT ინფრასტრუქტურა და კიბერუსაფრთხოება", icon: "servers.svg" },
-      { title: "ბიზნეს ანალიტიკა", icon: "computer.svg" },
-      { title: "ელექტრონიკა და შენობის მართვის სისტემები", icon: "apartment.svg" },
-      { title: "სამეთვალყურეო უსაფრთხოების სისტემები", icon: "cctv.svg" },
+      { title: "IT ინფრასტრუქტურა და კიბერუსაფრთხოება", icon: "/icons/servers.svg" },
+      { title: "ბიზნეს ანალიტიკა", icon: "/icons/computer.svg" },
+      { title: "ელექტრონიკა და შენობის მართვის სისტემები", icon: "/icons/apartment.svg" },
+      { title: "სამეთვალყურეო უსაფრთხოების სისტემები", icon: "/icons/cctv.svg" },
     ],
   },
   {
     title: "ტექნიკა და მოწყობილობები",
     subcategories: [
-      { title: "კომპიუტერული და საოფისე ტექნიკა", icon: "equipment.svg" },
-      { title: "სატელეკომუნიკაციო სისტემები", icon: "wireless.svg" },
-      { title: "პროგრამული უზრუნველყოფის ლიცენზირება", icon: "license.svg" },
+      { title: "კომპიუტერული და საოფისე ტექნიკა", icon: "/icons/equipment.svg" },
+      { title: "სატელეკომუნიკაციო სისტემები", icon: "/icons/wireless.svg" },
+      { title: "პროგრამული უზრუნველყოფის ლიცენზირება", icon: "/icons/license.svg" },
     ],
   },
   {
     title: "სერვისები",
     subcategories: [
-      { title: "IT აუტსორსინგი", icon: "information-technology.svg" },
-      { title: "საკომუნიკაციო მომსახურეობა", icon: "customer-service.svg" },
-      { title: "ქლაუდ სერვისები", icon: "cloud-computing.svg" },
-      { title: "სერვის ცენტრი", icon: "service-center.svg" },
+      { title: "IT აუტსორსინგი", icon: "/icons/information-technology.svg" },
+      { title: "საკომუნიკაციო მომსახურეობა", icon: "/icons/customer-service.svg" },
+      { title: "ქლაუდ სერვისები", icon: "/icons/cloud-computing.svg" },
+      { title: "სერვის ცენტრი", icon: "/icons/service-center.svg" },
     ],
   },
 ];
@@ -45,8 +48,8 @@ export default function ServiceSection() {
   return (
     <section className="container mx-auto px-6 py-12 grid grid-cols-4 gap-8">
       
-      {/* ✅ Sidebar მარცხნივ */}
-      <aside>
+      {/* ✅ Sidebar */}
+      <aside className="col-span-1 bg-[#F8F6EF] p-6 rounded-lg shadow-md sticky top-20">
         <nav>
           <ul className="space-y-4 text-lg">
             {[
@@ -54,11 +57,11 @@ export default function ServiceSection() {
               { id: "about-us", label: "გაგვიცანი ATERA" },
               { id: "partners", label: "პარტნიორები" },
               { id: "clients", label: "კლიენტები" },
-            ].map((item) => (
+            ].map((item: { id: string; label: any; }) => (
               <li
                 key={item.id}
                 onClick={() => scrollToSection(item.id, setActiveSection)}
-                className={`cursor-pointer pl-4 transition-all duration-100 ease-in-out ${
+                className={`cursor-pointer pl-4 transition-all duration-200 ease-in-out ${
                   activeSection === item.id
                     ? "text-[#1D3557] font-semibold border-l-4 border-[#1D3557]"
                     : "text-gray-600 hover:text-[#1D3557] hover:border-l-4 hover:border-[#1D3557]/50"
@@ -71,7 +74,7 @@ export default function ServiceSection() {
         </nav>
       </aside>
 
-      {/* ✅ მთავარი კონტენტი მარჯვნივ */}
+      {/* ✅ მთავარი კონტენტი */}
       <main className="col-span-3">
         <section id="services" className="container mx-auto px-6 py-12">
           <h2 className="text-3xl font-bold text-[#1D3557]">სერვისები</h2>
@@ -91,7 +94,14 @@ export default function ServiceSection() {
                 <ul className="mt-4 space-y-4">
                   {service.subcategories.map((sub, subIndex) => (
                     <li key={subIndex} className="flex flex-col items-center text-gray-600 text-sm">
-                      <img src={sub.icon} alt={sub.title} className="h-8 w-8 mb-2" />
+                      <Image
+                        src={sub.icon}
+                        alt={sub.title}
+                        width={32}
+                        height={32}
+                        className="mb-2"
+                        unoptimized
+                      />
                       {sub.title}
                     </li>
                   ))}

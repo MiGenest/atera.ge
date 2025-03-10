@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 const partners = [
   ["HP_Enterprise.svg", "dell.svg", "Microsoft.svg", "Acer.svg"],
@@ -19,7 +20,7 @@ export default function TeamSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === Math.ceil(partners.length / 3) - 1 ? 0 : prevIndex + 1
+        prevIndex === Math.ceil(partners.length / 4) - 1 ? 0 : prevIndex + 1
       );
     }, 3000); // 3 წამში ერთხელ გადართვა
 
@@ -44,20 +45,25 @@ export default function TeamSection() {
             className="flex transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {Array.from({ length: Math.ceil(partners.length / 3) }, (_, rowIndex) => (
-              <div key={rowIndex} className="grid grid-cols-4  min-w-full">
-                {partners.slice(rowIndex * 3, rowIndex * 3 + 3).flat().map((partner, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className="border border-gray-300 flex justify-center items-center p-4 bg-white"
-                  >
-                    <img
-                      src={`/${partner}`}
-                      alt={partner}
-                      className="h-16 object-contain"
-                    />
-                  </div>
-                ))}
+            {Array.from({ length: Math.ceil(partners.length / 4) }, (_, rowIndex) => (
+              <div key={rowIndex} className="grid grid-cols-4 min-w-full">
+                {partners
+                  .slice(rowIndex * 4, rowIndex * 4 + 4)
+                  .flat()
+                  .map((partner, colIndex) => (
+                    <div
+                      key={colIndex}
+                      className="border border-gray-300 flex justify-center items-center p-4 bg-white"
+                    >
+                      <Image
+                        src={`/icons/${partner}`}
+                        alt={partner}
+                        width={100} // სიგანე
+                        height={50} // სიმაღლე
+                        className="object-contain"
+                      />
+                    </div>
+                  ))}
               </div>
             ))}
           </div>
@@ -65,7 +71,7 @@ export default function TeamSection() {
 
         {/* ✅ ნავიგაციის წერტილები */}
         <div className="flex justify-center mt-6">
-          {Array.from({ length: Math.ceil(partners.length / 3) }, (_, index) => (
+          {Array.from({ length: Math.ceil(partners.length / 4) }, (_, index) => (
             <div
               key={index}
               onClick={() => setCurrentIndex(index)}

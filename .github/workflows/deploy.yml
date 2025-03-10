@@ -20,7 +20,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Sync files to S3
-        run: aws s3 sync . s3://YOUR_BUCKET_NAME --exclude ".git/*"
+        run: aws s3 sync . s3://goaterago --exclude ".git/*"
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E3GN0F7WJ4HHZE --paths "/*"

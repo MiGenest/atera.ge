@@ -48,3 +48,11 @@ next-env.d.ts
 node_modules/
 public/uploads/
 static/images/
+
+node_modules
+.next
+dist
+out
+.env
+*.log
+.DS_Store

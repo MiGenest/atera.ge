@@ -2,17 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const partners = [
-  ["HP_Enterprise.svg", "dell.svg", "Microsoft.svg", "Acer.svg"],
-  ["HP.svg", "Cisco.svg", "CheckPoint.svg", "SAP.svg"],
-  ["Oracle.svg", "Aruba.svg", "vmware.svg", "F5.svg"],
-  ["Juniper.svg", "Intel.svg", "ABB.svg", "Eaton.svg"],
-  ["RITTAL.svg", "Vivotek.svg", "IBM.svg", "LG.svg"],
-  ["Trellix.svg", "Bosch.svg", "Legrand.svg", "Schneider.svg"],
-  ["Honeywell.svg", "Calix.svg", "Broadcom.svg", "ISS.svg"],
-  ["Genetec.svg", "Dormakaba.svg", "Nokia.svg", "SuzoHapp.svg"],
-  ["Streamax.svg", "EAE.svg", "Ribbon.svg", "NEC.svg"],
-];
+const partnerSrc = (name: string) => `https://assets.atera.ge/icons/${name}`;
+
 
 export default function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,13 +46,17 @@ export default function TeamSection() {
                       key={colIndex}
                       className="border border-gray-300 flex justify-center items-center p-4 bg-white"
                     >
-                      <Image
-                        src={`/icons/${partner}`}
-                        alt={partner}
-                        width={100} // სიგანე
-                        height={50} // სიმაღლე
-                        className="object-contain"
-                      />
+                      <img
+  src={partnerSrc(partner)}
+  alt={partner.replace(".svg", "")}
+  className="h-10 w-auto opacity-80 hover:opacity-100 transition"
+  loading="lazy"
+/><img
+                          src={partnerSrc(partner)}
+                         alt={partner.replace(".svg", "")} alt={partner.replace(".svg" ")}.replace(".svg", "")}
+                          className="h-10 w-auto opacity-80 hover:opacity-100 transition"
+                          loading="lazy"
+                        />
                     </div>
                   ))}
               </div>

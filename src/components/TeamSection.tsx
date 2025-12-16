@@ -2,7 +2,36 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const partnerSrc = (name: string) => `https://assets.atera.ge/icons/${name}`;
+// ჰელპერ ფუნქცია ფაილის სახელიდან სრულ URL-ის შესაქმნელად
+const partnerSrc = (name: string) =>
+  `https://assets.atera.ge/icons/${name}`;
+
+// partners მასივი: თითოეული ელემენტი არის ოთხიანი ლოგოების სია, რომელიც სლაიდში გამოჩნდება
+const partners: string[][] = [
+  ["RITTAL.svg", "Vivotek.svg", "IBM.svg", "LG.svg"],
+  ["Trellix.svg", "Bosch.svg", "Legrand.svg", "Schneider.svg"],
+  ["Honeywell.svg", "Calix.svg", "Broadcom.svg", "ISS.svg"],
+  ["Genetec.svg", "Dormakaba.svg", "Nokia.svg", "SuzoHapp.svg"],
+  // სურვილისამებრ დაამატეთ მეტი რიგი აქ
+];
+
+// კომპონენტში, სადაც ახლა Carousel/Grid-ს ქმნით:
+<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-8">
+  {partners[currentIndex].map((name) => (
+    <div
+      key={name}
+      className="flex items-center justify-center rounded-2xl border border-black/10 bg-white p-5"
+    >
+      <img
+        src={partnerSrc(name)}
+        alt={name.replace('.svg', '')}
+        className="h-10 w-auto opacity-80 hover:opacity-100 transition"
+        loading="lazy"
+      />
+    </div>
+  ))}
+</div>
+
 
 
 export default function TeamSection() {
@@ -38,27 +67,6 @@ export default function TeamSection() {
           >
             {Array.from({ length: Math.ceil(partners.length / 4) }, (_, rowIndex) => (
               <div key={rowIndex} className="grid grid-cols-4 min-w-full">
-                {partners
-                  .slice(rowIndex * 4, rowIndex * 4 + 4)
-                  .flat()
-                  .map((partner, colIndex) => (
-                    <div
-                      key={colIndex}
-                      className="border border-gray-300 flex justify-center items-center p-4 bg-white"
-                    >
-                      <img
-  src={partnerSrc(partner)}
-  alt={partner.replace(".svg", "")}
-  className="h-10 w-auto opacity-80 hover:opacity-100 transition"
-  loading="lazy"
-/><img
-                          src={partnerSrc(partner)}
-                         alt={partner.replace(".svg", "")} alt={partner.replace(".svg" ")}.replace(".svg", "")}
-                          className="h-10 w-auto opacity-80 hover:opacity-100 transition"
-                          loading="lazy"
-                        />
-                    </div>
-                  ))}
               </div>
             ))}
           </div>

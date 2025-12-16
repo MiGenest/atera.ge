@@ -1,80 +1,88 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 
+const testimonials = [
+  {
+    text:
+      "ATERA-მ ჩვენთან ქსელი და უსაფრთხოება სრულად მოაწესრიგა სტაბილურობა საგრძნობლად გაიზარდა და რეაგირება ყოველთვის სწრაფია.",
+    name: "ალექსანდრე ჯიბოშვილი",
+    role: "ბიზნეს მენეჯერი",
+    avatar: "https://assets.atera.ge/icons/guy1.png",
+  },
+  {
+    text:
+      "ქლაუდში მიგრაცია და სარეზერვო სისტემა იდეალურად დაიგეგმა. დღეს მშვიდად ვართ მონაცემები დაცულია და ყველაფერი მონიტორინგდება.",
+    name: "ლელა თოდუა",
+    role: "IT ბიზნეს პარტნიორი",
+    avatar: "https://assets.atera.ge/icons/lady.png",
+  },
+  {
+    text:
+      "24/7 მხარდაჭერა რეალურად მუშაობს: ნებისმიერ საკითხზე სწრაფად გვიბრუნდებიან და გადაწყვეტილებებს კონკრეტულად, პრაქტიკულად გვთავაზობენ.",
+    name: "ლაშა ტუხაშვილი",
+    role: "CEO, Tech nova",
+    avatar: "https://assets.atera.ge/icons/guy2.png",
+  },
+];
+
 export default function TestimonialsSection() {
   return (
-    <section id="clients" className="py-20 px-4 md:px-10 lg:px-20 bg-white">
-      <div className="max-w-6xl mx-auto text-center">
-        {/* ✅ სათაური */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          მომხმარებელთა მიმოხილვები
-        </h2>
-        <p className="text-lg text-gray-600 mt-2">
-          რას ფიქრობენ ჩვენს შესახებ ჩვენი კლიენტები
-        </p>
+    <section
+      id="clients"
+      className="py-20 px-4 md:px-10 lg:px-20 bg-slate-50"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+            მომხმარებელთა მიმოხილვები
+          </h2>
+          <p className="text-base md:text-lg text-slate-600 mt-2">
+            რას ამბობენ ATERA-ს შესახებ ჩვენი პარტნიორები
+          </p>
+        </div>
 
-        {/* ✅ მიმოხილვების ბლოკი */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {/* ✅ მიმოხილვა 1 */}
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <p className="text-gray-700 italic">
-              &quot;Atera.ge-ს IT სერვისები გამორჩეულია. პროფესიონალიზმითა და მაღალი ხარისხით!&quot;
-            </p>
-            <div className="mt-4 flex items-center justify-center">
-              <Image
-                src="/guy1.png"
-                alt="მომხმარებელი"
-                width={48}
-                height={48}
-                className="rounded-full object-cover"
-              />
-              <div className="ml-4 text-left">
-                <h3 className="text-md font-semibold">ალექსანდრე ჯიბოშვილი</h3>
-                <p className="text-gray-500 text-sm">ბიზნეს მენეჯერი</p>
-              </div>
-            </div>
-          </div>
+        {/* Cards */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <article
+              key={t.name}
+              className="h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition"
+            >
+              <div className="flex flex-col h-full">
+                {/* Quote */}
+                <div className="flex-1">
+                  <div className="text-4xl leading-none text-slate-200">“</div>
+                  <p className="mt-2 text-slate-700 text-[15px] md:text-base leading-relaxed">
+                    {t.text}
+                  </p>
+                </div>
 
-          {/* ✅ მიმოხილვა 2 */}
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <p className="text-gray-700 italic">
-              &quot;საუკეთესო გადაწყვეტილება ჩვენი კომპანიის IT ინფრასტრუქტურისთვის!&quot;
-            </p>
-            <div className="mt-4 flex items-center justify-center">
-              <Image
-                src="/lady.png"
-                alt="მომხმარებელი"
-                width={48}
-                height={48}
-                className="rounded-full object-cover"
-              />
-              <div className="ml-4 text-left">
-                <h3 className="text-md font-semibold">ლელა თოდუა</h3>
-                <p className="text-gray-500 text-sm">IT ბიზნეს პარტნიორი</p>
+                {/* Person */}
+                <div className="mt-6 flex items-center gap-4 pt-6 border-t border-slate-100">
+                  <div className="h-12 w-12 rounded-full overflow-hidden bg-slate-100 shrink-0">
+                    <Image
+                      src={t.avatar}
+                      alt={t.name}
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-semibold text-slate-900 leading-tight">
+                      {t.name}
+                    </h3>
+                    <p className="text-sm text-slate-500 leading-tight mt-1">
+                      {t.role}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* ✅ მიმოხილვა 3 */}
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
-            <p className="text-gray-700 italic">
-              &quot;Atera.ge-ს გუნდთან მუშაობა ნამდვილი სიამოვნებაა. ყველაფერი დროულად და ეფექტურად გაკეთდა!&quot;
-            </p>
-            <div className="mt-4 flex items-center justify-center">
-              <Image
-                src="/guy2.png"
-                alt="მომხმარებელი"
-                width={48}
-                height={48}
-                className="rounded-full object-cover"
-              />
-              <div className="ml-4 text-left">
-                <h3 className="text-md font-semibold">ლაშა ტუხაშვილი</h3>
-                <p className="text-gray-500 text-sm">CEO, Tech nova</p>
-              </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

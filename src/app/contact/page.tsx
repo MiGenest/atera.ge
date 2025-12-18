@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import { FaHome } from "react-icons/fa";
 
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
